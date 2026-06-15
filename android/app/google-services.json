@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "518370251861",
+    "firebase_url": "https://chatapp-d7944-default-rtdb.firebaseio.com",
+    "project_id": "chatapp-d7944",
+    "storage_bucket": "chatapp-d7944.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:518370251861:android:60b954ce90b634909db0dc",
+        "android_client_info": {
+          "package_name": "com.example.ecommerce"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMv1vHujABCbMZoBbUKUExZrTFV_bwzUY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:518370251861:android:f493f2c33a249cb99db0dc",
+        "android_client_info": {
+          "package_name": "com.example.maps"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMv1vHujABCbMZoBbUKUExZrTFV_bwzUY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
