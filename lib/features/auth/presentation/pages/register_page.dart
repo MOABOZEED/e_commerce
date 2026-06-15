@@ -51,13 +51,7 @@ class RegisterScreen extends StatelessWidget {
                   ),
                 ),
               );
-              // Navigator.pushAndRemoveUntil(
-              //   context,
-              //
-              //   MaterialPageRoute(builder: (_) => const HomePage()),
-              //
-              //   (route) => false,
-              // );
+         
             }
 
             /// ERROR
