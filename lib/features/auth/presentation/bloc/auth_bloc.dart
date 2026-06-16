@@ -31,7 +31,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     /// USER LOGIN
     on<UserLoginEvent>(_userLogin);
 
-
     /// REGISTER
     on<RegisterEvent>(_register);
 
@@ -48,8 +47,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(AuthLoading());
 
     final result = await loginUseCase(
-      email: event.email,
-      password: event.password,
+      LoginParams(email: event.email, password: event.password),
     );
 
     result.fold(
@@ -61,8 +59,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       },
     );
   }
-
-
 
   Future<void> _register(RegisterEvent event, Emitter<AuthState> emit) async {
     emit(AuthLoading());
@@ -86,8 +82,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
   }
 
-
-
   Future<void> _logout(LogoutEvent event, Emitter<AuthState> emit) async {
     emit(AuthLoading());
 
@@ -98,8 +92,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       ifRight: (success) => emit(LogoutSuccess()),
     );
   }
-
-
 
   Future<void> _getCurrentUser(
     GetCurrentUserEvent event,
