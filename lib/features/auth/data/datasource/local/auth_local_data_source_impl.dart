@@ -42,4 +42,10 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
 
     return result;
   }
+
+  @override
+  Future<bool> isLoggedIn() {
+    // TODO: implement isLoggedIn
+    throw UnimplementedError();
+  }
 }

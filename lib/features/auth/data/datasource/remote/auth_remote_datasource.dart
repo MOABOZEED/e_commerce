@@ -8,5 +8,5 @@ abstract class AuthRemoteDataSource {
 
   Future<MessageEntity> register(RegisterParams params);
 
-  Future<void> logOut();
+  Future<void> logout();
 }

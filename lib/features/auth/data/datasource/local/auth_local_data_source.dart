@@ -7,6 +7,6 @@ abstract class AuthLocalDataSource {
 
   Future<void> removeToken();
 
-
+  Future<bool> isLoggedIn();
 
 }
