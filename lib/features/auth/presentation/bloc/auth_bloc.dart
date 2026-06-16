@@ -85,7 +85,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   Future<void> _logout(LogoutEvent event, Emitter<AuthState> emit) async {
     emit(AuthLoading());
 
-    final result = await logoutUseCase.execute();
+    final result = await logoutUseCase.call();
 
     result.fold(
       ifLeft: (failure) => emit(AuthError(failure.message)),
@@ -99,7 +99,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ) async {
     emit(AuthLoading());
 
-    final result = await getCurrentUserUseCase.execute();
+    final result = await getCurrentUserUseCase.call();
 
     result.fold(
       ifLeft: (failure) {

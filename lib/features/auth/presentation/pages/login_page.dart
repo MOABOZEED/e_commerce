@@ -2,7 +2,9 @@ import 'package:ecommerce/features/admin/presentation/pages/admin_home_page.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../injection_container.dart';
 import '../../../products/presentation/pages/product_page.dart';
+import '../../data/datasource/local/auth_local_data_source.dart';
 import '../bloc/auth_bloc.dart';
 import '../bloc/auth_event.dart';
 import '../bloc/auth_state.dart';
@@ -11,6 +13,7 @@ import '../widgets/login_button.dart';
 import '../widgets/login_form.dart';
 import '../widgets/login_header.dart';
 import '../widgets/regester_text.dart';
+
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
 
@@ -27,21 +30,19 @@ class LoginScreen extends StatelessWidget {
         child: BlocConsumer<AuthBloc, AuthState>(
           listener: (context, state) {
             if (state is LoginSuccess) {
-              if(state.auth.user.role == 'admin'){
+              if (state.auth.user.role == 'admin') {
                 Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(builder: (_) => const AdminHomePage()),
-                      (route) => false,
+                  (route) => false,
                 );
-              }
-              else{
+              } else {
                 Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(builder: (_) => const ProductPage()),
-                      (route) => false,
+                  (route) => false,
                 );
               }
-
             }
 
             if (state is AuthError) {
@@ -84,6 +85,16 @@ class LoginScreen extends StatelessWidget {
                             );
                           }
                         },
+                      ),
+
+                      ElevatedButton(
+                        onPressed: () async {
+                          final token = await sl<AuthLocalDataSource>()
+                              .getToken();
+
+                          print(token);
+                        },
+                        child: const Text('Check Token'),
                       ),
 
                       const SizedBox(height: 20),
