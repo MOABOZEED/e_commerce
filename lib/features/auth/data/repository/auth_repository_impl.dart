@@ -1,7 +1,7 @@
-
 import 'package:dart_either/dart_either.dart';
 import 'package:dio/dio.dart';
 import 'package:ecommerce/features/auth/domain/entities/auth_entity.dart';
+import 'package:ecommerce/features/auth/domain/entities/login_params.dart';
 import 'package:ecommerce/features/auth/domain/entities/register_params.dart';
 
 import '../../../../core/entities/message_entity.dart';
@@ -11,37 +11,23 @@ import '../../domain/repository/auth_repository.dart';
 import '../datasource/remote/auth_remote_datasource.dart';
 import '../models/request/login_request.dart';
 
-class AuthRepositoryImpl
-    implements AuthRepository {
+class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSource remote;
 
   const AuthRepositoryImpl(this.remote);
 
   @override
-  Future<Either<Failure, AuthEntity>> login({
-    required String email,
-    required String password,
-  }) async {
+  Future<Either<Failure, AuthEntity>> login(LoginParams loginParams) async {
     try {
       final result = await remote.login(
-        LoginRequest(
-          email: email,
-          password: password,
-        ),
+        LoginRequest(email: loginParams.email, password: loginParams.password),
       );
 
       return Right(result);
     } on DioException catch (e) {
-      return Left(
-        ServerFailure(
-          e.response?.data['message'] ??
-              'Server Error',
-        ),
-      );
+      return Left(ServerFailure(e.response?.data['message'] ?? 'Server Error'));
     } catch (e) {
-      return Left(
-        ServerFailure(e.toString()),
-      );
+      return Left(ServerFailure(e.toString()));
     }
   }
 
@@ -58,9 +44,7 @@ class AuthRepositoryImpl
   }
 
   @override
-  Future<Either<Failure, MessageEntity>> register(
-      RegisterParams params,
-      ) async {
+  Future<Either<Failure, MessageEntity>> register(RegisterParams params) async {
     try {
       final message = await remote.register(params);
 
@@ -70,7 +54,6 @@ class AuthRepositoryImpl
     }
   }
 }
-
 
 // import 'package:dart_either/dart_either.dart';
 //

@@ -1,18 +1,18 @@
 import 'package:dart_either/dart_either.dart';
+import 'package:ecommerce/features/auth/domain/entities/login_params.dart';
 
 import '../../../../core/errors/failures.dart';
 import '../entities/auth_entity.dart';
 import '../repository/auth_repository.dart';
 
 class LoginUseCase {
-  final AuthRepository repository;
+  final AuthRepository authRepository;
 
-  LoginUseCase(this.repository);
+  LoginUseCase(this.authRepository);
 
-  Future<Either<Failure, AuthEntity>> call({
-    required String email,
-    required String password,
-  }) {
-    return repository.login(email: email, password: password);
+  Future<Either<Failure, AuthEntity>> call(LoginParams loginParams) async {
+    return await authRepository.login(
+      LoginParams(email: loginParams.email, password: loginParams.password),
+    );
   }
 }
